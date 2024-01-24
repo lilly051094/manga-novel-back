@@ -1,0 +1,15 @@
+server.servlet.context-path: /gestion
+
+spring:
+  liquibase:
+      changeLog: classpath:/liquibase/master.xml
+      contexts: k8s 
+  datasource: 
+      driverClassName: org.postgresql.Driver
+      url: "jdbc:mongodb://localhost:27017/mongodb"
+
+server:
+    tomcat:
+      connection-timeout: #
+      keep-alive-timeout: 36000
+

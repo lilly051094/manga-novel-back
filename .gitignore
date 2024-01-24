@@ -6,7 +6,8 @@
 /node_modules
 
 # IDEs and editors
-/.idea
+/manga-novel/.idea
+/manga-novel/**/target/**
 .project
 .classpath
 .c9/

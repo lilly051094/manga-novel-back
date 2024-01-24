@@ -1,0 +1,109 @@
+openapi: 3.0.0
+
+info:
+  title: France SESAME - Portail - REST API (Front)
+  version: 0.4.0
+  description: Portail REST API for the Frontend
+
+servers:
+  - url: http://localhost:8080/
+    description: localhost
+
+paths:
+
+  /me/informations-personnelles:
+    get:
+      tags:
+        - informationsPersonnelles
+      summary: Recupere les informations personnelles de l'utilisateur connecté
+      operationId: getInformationsPersonnelles
+      responses:
+        200:
+          description: Succesful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InformationsPersonnellesDto'
+
+    post:
+      tags:
+        - informationsPersonnelles
+      summary: Modifie les informations personnelles
+      operationId: postInformationsPersonnelles
+      requestBody:
+        description: Details des informations personnelles de l'utilisateur connecté
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InformationsPersonnellesDto'
+        required: true
+      responses:
+        204:
+          description: successful operation
+
+components:
+
+  parameters:
+    FormaliteId:
+      name: formaliteId
+      in: path
+      description: Identifiant de la formalité
+      required: true
+      schema:
+        $ref: '#/components/schemas/FormaliteId'
+
+    ReferenceId:
+      name: reference
+      in: path
+      description: reference utilisateur
+      required: true
+      schema:
+        $ref: '#/components/schemas/ReferenceId'
+
+  schemas:
+
+    InformationsPersonnellesDto:
+      type: object
+      properties:
+        nom:
+          type: string
+        prenom:
+          type: string
+        localisation:
+          type: string
+        service:
+          type: string
+        administration:
+          type: string
+        entreprise:
+          type: string
+        email:
+          type: string
+        telephone:
+          type: string
+
+    AgentsDto:
+      type: array
+      items:
+        $ref: '#/components/schemas/AgentDto'
+
+    AgentDto:
+      type: object
+      properties:
+        reference:
+          type: string
+        profileHabilitation:
+          type: string
+        informationsPersonnelles:
+            $ref: '#/components/schemas/InformationsPersonnellesDto'
+
+    FormaliteId:
+      type: string
+
+    ReferenceId:
+      type: string
+
+    ArrayLocalisations:
+      type: array
+      items:
+        type: string

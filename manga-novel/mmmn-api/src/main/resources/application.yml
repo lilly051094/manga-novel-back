@@ -1,0 +1,36 @@
+spring:
+    profiles.group:
+       local-postgres: local-mongodb,secret
+       k8s: secret
+       default: h2,dev,dev-keycloak,dev-secret
+    application:
+        name: mmmn
+    jackson:
+        serialization.write_dates_as_timestamps: false
+    jpa:
+        hibernate:
+            ddl-auto: validate
+            naming:
+                physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+                implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        properties:
+            hibernate.hbm2ddl.auto: validate
+    liquibase.changeLog: classpath:/liquibase/master.xml
+    servlet.multipart:
+        max-file-size: 50MB
+        max-request-size: 50MB
+    
+springdoc.default-produces-media-type: application/json
+
+application:
+  environment:
+  
+server:
+    servlet.context-path: /mmmmn
+    max-http-header-size: 50KB
+    error.include-message: always
+    tomcat:
+        connection-timeout: #
+springdoc:
+  swagger-ui:
+    urls-primary-name: web-services

@@ -1,0 +1,26 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate.hbm2ddl.auto: validate
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://localhost:8082/auth/realms/ush/protocol/openid-connect/certs
+
+
+application:
+  external-url: http://mmmn
+  keycloak: 
+    url: http://keycloak
+    login: login
+    password: password
+  environment: local
+
+server:
+  tomcat:
+    connection-timeout: #
+    keep-alive-timeout: 36000
